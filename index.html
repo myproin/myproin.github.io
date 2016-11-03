@@ -39,6 +39,9 @@
             font-size: 20px;
             padding: 10px 0px 10px 0px;
         }
+        form .error {
+            color: #ff0000;
+        }
     </style>
  
 </head>
@@ -215,17 +218,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <div>
-                        <form class="form-horizontal" method="post">
+                        <form name="contactUs" class="form-horizontal" method="post">
                             <fieldset>
 
                                 <div class="form-group">
                                     <span class="col-md-1 col-md-offset-2 text-center"></span>
                                     <div class="col-sm-3" >
-                                        <input id="fname" name="name" type="text" placeholder="お名前" class="form-control">
+                                        <input id="name" name="name" type="text" placeholder="お名前" class="form-control">
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <input id="email" name="email" type="text" placeholder="メール(必要)" class="form-control">
+                                        <input id="email" name="email" type="text" placeholder="メアド" class="form-control">
                                     </div>
                                 </div>
 
@@ -289,9 +292,12 @@
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/jquery.validate.js"/>
+
 
     <!-- Theme JavaScript -->
     <script src="js/new-age.min.js"></script>
+    <script src="js/form-validation.js"></script>
 
 </body>
 
