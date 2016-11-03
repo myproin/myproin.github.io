@@ -37,7 +37,7 @@ $(function() {
       // there are many ways to get this data using jQuery (you can use the class or id also)
       var formData = {
         "icon_emoji": ":question:",
-        'text': $('input[name=email]').val() + "\n" + $('input[name=message]').val(),
+        'text': $('input[name=email]').val() + "\n" + $('textarea[name=message]').val(),
         'channel': "#hp-inqury",
         'username': $('input[name=name]').val()
       };
