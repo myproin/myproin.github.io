@@ -22,48 +22,48 @@ $(function() {
       name: "お名前を入力してください",
       email: "メアドを入力してください",
       message: "メッセージを入力してください"
-    }
+    },
     // Make sure the form is submitted to the destination defined
     // in the "action" attribute of the form when valid
-    // submitHandler: function(form) {
-    //   form.submit();
-    // }
+    submitHandler: function(form) {
+        // get the form data
+        // there are many ways to get this data using jQuery (you can use the class or id also)
+        var formData = {
+          "icon_emoji": ":question:",
+          'text': $('input[name=email]').val() + "\n" + $('textarea[name=message]').val(),
+          'channel': "#hp-inqury",
+          'username': $('input[name=name]').val()
+        };
+
+        // process the form
+        $.ajax({
+          type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+          url: 'https://hooks.slack.com/services/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', // the url where we want to POST
+          data: JSON.stringify(formData), // our data object
+          dataType: 'json', // what type of data do we expect back from the server
+          encode: true
+
+        })
+        // using the done promise callback
+            .done(function (data) {
+
+                alert("aaaa");
+                $('#contactUsDiv').html("<h2>Your request is on the way!</h2>")
+                    .hide()
+                    .fadeIn(1500, function () {
+                      $('#contactUsDiv').append("<h2>We <i class=\"fa fa-heart\"></i> your feedback!</h2>");
+                    });
+
+            });
+
+        // stop the form from submitting the normal way and refreshing the page
+        event.preventDefault();
+
+    }
   });
 
   $(document).ready(function() {
-    $("form[name='contactUs']").submit(function (event) {
 
-      // get the form data
-      // there are many ways to get this data using jQuery (you can use the class or id also)
-      var formData = {
-        "icon_emoji": ":question:",
-        'text': $('input[name=email]').val() + "\n" + $('textarea[name=message]').val(),
-        'channel': "#hp-inqury",
-        'username': $('input[name=name]').val()
-      };
-
-      // process the form
-      $.ajax({
-        type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-        url: 'https://hooks.slack.com/services/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', // the url where we want to POST
-        data: JSON.stringify(formData), // our data object
-        dataType: 'json', // what type of data do we expect back from the server
-        encode: true
-
-      })
-      // using the done promise callback
-          .done(function (data) {
-
-            // log data to the console so we can see
-            // console.log(data);
-
-            // here we will handle errors and validation messages
-          });
-
-      // stop the form from submitting the normal way and refreshing the page
-      event.preventDefault();
-
-    });
   });
 
 });
