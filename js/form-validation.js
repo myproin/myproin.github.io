@@ -1,6 +1,6 @@
 // Wait for the DOM to be ready
 $(function() {
-  // Add noSpace rule
+  // Add notnull rule
   $.validator.addMethod("notnull", function(value, element) {
     return value == '' || value.trim().length != 0;
   }, "Not null!");
@@ -42,7 +42,7 @@ $(function() {
         var formData = {
           "icon_emoji": ":question:",
           'text': $('input[name=email]').val() + "\n" + $('textarea[name=message]').val(),
-          'channel': "#hp-inqury",
+          'channel': "@pen",
           'username': $('input[name=name]').val()
         };
 
@@ -53,20 +53,16 @@ $(function() {
           data: JSON.stringify(formData), // our data object
           dataType: 'json', // what type of data do we expect back from the server
           crossDomain: true,
-          encode: true,
-          async: true,
-          success: function (data) {
-            console.log("aaa");
-            $("form[name='contactUs']").html("<div id='message'></div>");
-            $("#message").html("<h2>Your request is on the way!</h2>")
-                .hide()
-                .fadeIn(1500, function () {
-                  $("#message").append("<h2>We <i class=\"fa fa-heart\"></i> your feedback!</h2>");
-                });
-
-          }
-
-        });
+          async: true
+        }).done(function (data) {
+              console.log(data);
+            });
+      $("#contactUsDiv").html("<div id='message'></div>");
+      $("#message").html("<h2>Your request is on the way!</h2>")
+          .hide()
+          .fadeIn(1500, function () {
+            $("#message").append("<h2>Thank you for your feedback!</h2>");
+          });
 
         return false;
 
