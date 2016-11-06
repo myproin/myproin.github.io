@@ -58,10 +58,10 @@ $(function() {
               console.log(data);
             });
       $("#contactUsDiv").html("<div id='message'></div>");
-      $("#message").html("<h2>お問い合わせをありがとうございます。</h2>")
+      $("#message").html("<h3>お問い合わせをありがとうございます。</h3>")
           .hide()
           .fadeIn(1500, function () {
-            $("#message").append("<h2>２つ営業日以内に連絡いたします。</h2>");
+            $("#message").append("<h3>２つ営業日以内に連絡いたします。</h3>");
           });
 
         return false;
