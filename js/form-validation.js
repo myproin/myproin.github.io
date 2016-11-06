@@ -1,5 +1,10 @@
 // Wait for the DOM to be ready
 $(function() {
+  // Add noSpace rule
+  $.validator.addMethod("notnull", function(value, element) {
+    return value == '' || value.trim().length != 0;
+  }, "Not null!");
+
   // Initialize form validation on the registration form.
   // It has the name attribute "registration"
   $("form[name='contactUs']").validate({
@@ -8,14 +13,20 @@ $(function() {
       // The key name on the left side is the name attribute
       // of an input field. Validation rules are defined
       // on the right side
-      name: "required",
+      name: {
+        required: true,
+        notnull: true
+      },
       email: {
         required: true,
         // Specify that email should be validated
         // by the built-in "email" rule
         email: true
       },
-      message: "required"
+      message: {
+        required: true,
+        notnull: true
+      }
     },
     // Specify validation error messages
     messages: {
@@ -41,29 +52,30 @@ $(function() {
           url: 'https://hooks.slack.com/services/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', // the url where we want to POST
           data: JSON.stringify(formData), // our data object
           dataType: 'json', // what type of data do we expect back from the server
-          encode: true
+          crossDomain: true,
+          encode: true,
+          async: true,
+          success: function (data) {
+            console.log("aaa");
+            $("form[name='contactUs']").html("<div id='message'></div>");
+            $("#message").html("<h2>Your request is on the way!</h2>")
+                .hide()
+                .fadeIn(1500, function () {
+                  $("#message").append("<h2>We <i class=\"fa fa-heart\"></i> your feedback!</h2>");
+                });
 
-        })
-        // using the done promise callback
-            .done(function (data) {
+          }
 
-                alert("aaaa");
-                $('#contactUsDiv').html("<h2>Your request is on the way!</h2>")
-                    .hide()
-                    .fadeIn(1500, function () {
-                      $('#contactUsDiv').append("<h2>We <i class=\"fa fa-heart\"></i> your feedback!</h2>");
-                    });
+        });
 
-            });
+        return false;
+
 
         // stop the form from submitting the normal way and refreshing the page
-        event.preventDefault();
+        //event.preventDefault();
 
     }
   });
 
-  $(document).ready(function() {
-
-  });
 
 });
