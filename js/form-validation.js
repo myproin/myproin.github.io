@@ -49,7 +49,7 @@ $(function() {
         // process the form
         $.ajax({
           type: 'POST', // define the type of HTTP verb we want to use (POST for our form)
-          url: 'https://hooks.slack.com/services/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', // the url where we want to POST
+          url: 'https://hooks.slack.com/services/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', // the url where we want to POST
           data: JSON.stringify(formData), // our data object
           dataType: 'json', // what type of data do we expect back from the server
           crossDomain: true,
