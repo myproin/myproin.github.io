@@ -42,7 +42,7 @@ $(function() {
         var formData = {
           "icon_emoji": ":question:",
           'text': $('input[name=email]').val() + "\n" + $('textarea[name=message]').val(),
-          'channel': "@pen",
+          'channel': "#lp-inquiry",
           'username': $('input[name=name]').val()
         };
 
